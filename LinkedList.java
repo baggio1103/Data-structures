@@ -80,6 +80,7 @@ public class LinkedList {
         // здесь будет ваш код удаления всех узлов по заданному значению
        while (node != null){
            if(node.next == null){
+               tail = node;
                break;
            }
 
