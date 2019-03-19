@@ -48,15 +48,15 @@ public class LinkedList {
         // здесь будет ваш код удаления одного узла по заданному значению
         Node node = head;
         Node newNode;
-        while (node != null) {
-        if(head.value == _value){
+             if(head.value == _value){
             newNode = head;
             head = null;
             head = newNode.next;
-           printList();
+        //   printList();
             return true;
         }
-        else if(node.next.value == _value ){
+        while (node != null) {
+         if(node.next.value == _value ){
             newNode = node;
             node = node.next;
             newNode.next = node.next;
@@ -80,10 +80,8 @@ public class LinkedList {
         // здесь будет ваш код удаления всех узлов по заданному значению
        while (node != null){
            if(node.next == null){
-               tail = node;
                break;
            }
-
            if(head.next == null){
                break;
            }
@@ -100,9 +98,14 @@ public class LinkedList {
                  newNode.next = node.next;
                  node = newNode;
             }
-            else
+            else{
                 node = node.next;
-        }
+         }
+             if((node.next == tail) && (tail.value == _value)){
+                tail = node;
+            }
+
+       }
     }
 
     public void clear()
