@@ -76,6 +76,9 @@ public class LinkedList {
                 head = null;
                 break;
             }
+              if(head.value != _value && head.next == null){
+                break;
+            }    
             if (head.value == _value) {
                 newNode = head;
                 head = null;
