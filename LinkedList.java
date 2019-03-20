@@ -79,33 +79,34 @@ public class LinkedList {
         Node newNode;
         // здесь будет ваш код удаления всех узлов по заданному значению
        while (node != null){
-           if(node.next == null){
-               break;
-           }
-           if(head.next == null){
-               break;
-           }
-             if((node.next == tail) && (tail.value == _value)){
-                tail = node;
+              if(head.next ==null && head.value ==_value){
+                head = null;
+                break;
             }
-    // we are checking  whether the first node contains the desired value
-         if(head.value == _value){
-           newNode = head;
-           head = null;
-           head = newNode.next;
-           }
-    // we are checking whether other nodes contain
+            if(head.value == _value){
+                newNode = head;
+                head = null;
+                head = newNode.next;
+            }
             else if(node.next.value == _value){
-                 newNode = node;
-                 node = node.next;
-                 newNode.next = node.next;
-                 node = newNode;
-            }
-            else{
+                newNode = node;
                 node = node.next;
-         }
+                newNode.next = node.next;
+                node = newNode;
+            }
+            else {
+                node = node.next;
+            }
+            if((node.next == tail) && (tail.value == _value)){
+                tail = node;
+                break;
+            }
+            if(node.next == null ){
+                break;
+            }
+
        }
-    }
+    
 
     public void clear()
     {
