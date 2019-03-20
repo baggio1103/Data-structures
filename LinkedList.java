@@ -85,6 +85,9 @@ public class LinkedList {
            if(head.next == null){
                break;
            }
+             if((node.next == tail) && (tail.value == _value)){
+                tail = node;
+            }
     // we are checking  whether the first node contains the desired value
          if(head.value == _value){
            newNode = head;
@@ -101,10 +104,6 @@ public class LinkedList {
             else{
                 node = node.next;
          }
-             if((node.next == tail) && (tail.value == _value)){
-                tail = node;
-            }
-
        }
     }
 
