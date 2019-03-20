@@ -79,7 +79,7 @@ public class LinkedList {
         Node newNode;
         // здесь будет ваш код удаления всех узлов по заданному значению
        while (node != null){
-              if(head.next ==null && head.value ==_value){
+              if(head.next == null && head.value ==_value){
                 head = null;
                 break;
             }
