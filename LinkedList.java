@@ -88,10 +88,12 @@ public class LinkedList {
             } else {
                 node = node.next;
             }
-            if ((node.next == tail) && (tail.value == _value)) {
-                tail = node;
+           if ((node.next == tail) && (tail.value == _value)) {
+               node.next = null;
+               tail = node;
                 break;
             }
+           
             if (node.next == null) {
                 break;
             }
