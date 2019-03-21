@@ -74,6 +74,7 @@ public class LinkedList {
         while (node != null) {
             if (head.next == null && head.value == _value) {
                 head = null;
+                tail = null;
                 break;
             }
               if(head.value != _value && head.next == null){
