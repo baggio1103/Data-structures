@@ -84,18 +84,19 @@ public class LinkedList {
                 newNode = head;
                 head = null;
                 head = newNode.next;
-            } else if (node.next.value == _value) {
+            }
+            if ((node.next == tail) && (tail.value == _value)) {
+               node.next = null;
+               tail = node;
+                break;
+            } 
+            else if (node.next.value == _value) {
                 newNode = node;
                 node = node.next;
                 newNode.next = node.next;
                 node = newNode;
             } else {
                 node = node.next;
-            }
-           if ((node.next == tail) && (tail.value == _value)) {
-               node.next = null;
-               tail = node;
-                break;
             }
            
             if (node.next == null) {
