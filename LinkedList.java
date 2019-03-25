@@ -43,6 +43,9 @@ public class LinkedList {
     public boolean remove(int _value) {
         Node node = head;
         Node newNode;
+           if(head == null){
+            return false;
+        }
          if (head.next == null && head.value == _value) {
             head = null;
             tail = null;
