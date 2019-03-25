@@ -119,17 +119,20 @@ public class LinkedList {
             if (node.next == null) {
                 break;
             }
-
         }
     }
 
     public void clear() {
-        Node node = head;
-        while (head != null) {
-            head = node.next;
-            head = null;
+      Node node = head;
+    Node newNode;
+    while (head != null) {
+        newNode = head;
+        head = null;
+        head = newNode.next;
+        if(head == tail){
+            tail = null;
         }
-
+     }
     }
 
     public int count() {
