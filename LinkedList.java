@@ -43,24 +43,38 @@ public class LinkedList {
     public boolean remove(int _value) {
         Node node = head;
         Node newNode;
-        if (head.value == _value) {
-            newNode = head;
+         if (head.next == null && head.value == _value) {
             head = null;
-            head = newNode.next;
-            //   printList();
+            tail = null;
             return true;
         }
         while (node != null) {
-            if (node.next.value == _value) {
+            if(head.value != _value && head.next == null){
+                return false;
+            }
+            if (head.value == _value) {
+                newNode = head;
+                head = null;
+                head = newNode.next;
+                return true;
+            }
+            if ((node.next == tail) && (tail.value == _value)) {
+                node.next = null;
+                tail = node;
+                return true;
+            }
+            else if (node.next.value == _value) {
                 newNode = node;
                 node = node.next;
                 newNode.next = node.next;
-                //    printList();
+                node = newNode;
                 return true;
-            } else
+            } else {
                 node = node.next;
+            }
+
             if (node.next == null) {
-                break;
+                return false;
             }
 
         }
