@@ -147,6 +147,7 @@ public class LinkedList {
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
         Node node = head;
+        Node newNode;
          if(_nodeAfter == null && count() == 0){
             head = _nodeToInsert;
             tail = _nodeToInsert;
