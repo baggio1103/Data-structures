@@ -151,14 +151,18 @@ public class LinkedList {
             head = _nodeToInsert;
             tail = _nodeToInsert;
         }
-        while (node != null) {
-            if (node.equals(_nodeAfter)) {
-                node = node.next;
-                _nodeAfter.next = _nodeToInsert;
-                _nodeToInsert.next = node;
-            } else
-                node = node.next;
-        }
+                 else if(_nodeAfter != null) {
+             while (node != null) {
+                 if (node.value == _nodeAfter.value) {
+                     newNode = node;
+                     node = node.next;
+                     newNode.next = _nodeToInsert;
+                     _nodeToInsert.next = node;
+                     break;
+                 } else
+                     node = node.next;
+             }
+         }
     }
 
     public LinkedList listReturn(LinkedList list, LinkedList list2) {
