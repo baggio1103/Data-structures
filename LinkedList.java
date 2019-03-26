@@ -154,7 +154,13 @@ public class LinkedList {
         }
                  else if(_nodeAfter != null) {
              while (node != null) {
-                 if (node.value == _nodeAfter.value) {
+                 
+                 if(node == tail && node.value == _nodeAfter.value){
+                    tail.next = _nodeToInsert;
+                    tail = _nodeToInsert;
+                    break;
+                }
+                else if (node.value == _nodeAfter.value) {
                      newNode = node;
                      node = node.next;
                      newNode.next = _nodeToInsert;
