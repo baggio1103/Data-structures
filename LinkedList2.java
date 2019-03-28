@@ -104,7 +104,7 @@ public class LinkedList2 {
                 head = null;
                 tail= null;
                 break;
-            } else if (head.value == _value) {
+             } else if (head.value == _value) {
                 head = head.next;
                 head.prev = null;
                 node = head;
@@ -116,7 +116,8 @@ public class LinkedList2 {
                 tail.prev = newNode;
                 tail.next = null;
                 break;
-            } else if (node.next.value == _value) {
+            }
+            else if (node.next != null && node.next.value == _value) {
                 newNode = node;
                 node = node.next;
                 newNode.next = node.next;
@@ -125,10 +126,13 @@ public class LinkedList2 {
             else {
                 newNode = node;
                 node = node.next;
-                node.prev = newNode;
+                if (node != null) {
+                    node.prev = newNode;
+                }
             }
         }
     }
+   
     public void clear() {
         // здесь будет ваш код очистки всего списка
         Node node = head;
