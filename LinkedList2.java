@@ -97,13 +97,14 @@ public class LinkedList2 {
         // здесь будет ваш код удаления всех узлов по заданному значению
         Node node = head;
         Node newNode;
-         if (head.value == _value && count() == 1){
-             head = null;
-             tail= null;
-         }
-         else
-           while (node != null) {
-            if (head.value == _value) {
+        while (node != null) {
+            if(count() == 0){
+                break;
+            }else if (head.value == _value && count() == 1){
+                head = null;
+                tail= null;
+                break;
+            } else if (head.value == _value) {
                 head = head.next;
                 head.prev = null;
                 node = head;
@@ -122,18 +123,12 @@ public class LinkedList2 {
                 node = newNode;
             }
             else {
-                head.prev = null;
                 newNode = node;
                 node = node.next;
                 node.prev = newNode;
-
-            }
-            if (node.next == null) {
-                break;
             }
         }
     }
-
     public void clear() {
         // здесь будет ваш код очистки всего списка
         Node node = head;
