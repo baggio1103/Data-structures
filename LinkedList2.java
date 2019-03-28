@@ -97,11 +97,18 @@ public class LinkedList2 {
         // здесь будет ваш код удаления всех узлов по заданному значению
         Node node = head;
         Node newNode;
-        while (node != null) {
+         if (head.value == _value && count() == 1){
+             head = null;
+             tail= null;
+         }
+         else
+           while (node != null) {
             if (head.value == _value) {
                 head = head.next;
                 head.prev = null;
-            } else if (node.next == tail && tail.value == _value) {
+                node = head;
+            }
+            else if (node.next == tail && tail.value == _value) {
                 newNode = node.prev;
                 node.next = null;
                 tail = node;
@@ -113,11 +120,13 @@ public class LinkedList2 {
                 node = node.next;
                 newNode.next = node.next;
                 node = newNode;
-            } else {
+            }
+            else {
                 head.prev = null;
                 newNode = node;
                 node = node.next;
                 node.prev = newNode;
+
             }
             if (node.next == null) {
                 break;
@@ -134,11 +143,11 @@ public class LinkedList2 {
             head.prev = null;
             head = null;
             head = newNode;
-             if(head == null){
+            if(head == null){
                 tail = null;
             }
-          }
-       }
+        }
+    }
 
     public int count() {
         // здесь будет ваш код подсчёта количества элементов в списке
@@ -223,6 +232,8 @@ public class LinkedList2 {
     public Node tailOfList(LinkedList2 list2) {
         return list2.tail;
     }
+
+
 }
 
 class Node
