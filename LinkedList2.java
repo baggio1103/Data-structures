@@ -134,11 +134,11 @@ public class LinkedList2 {
             head.prev = null;
             head = null;
             head = newNode;
-        }
-        if (head == tail) {
-            tail = null;
-        }
-    }
+             if(head == null){
+                tail = null;
+            }
+          }
+       }
 
     public int count() {
         // здесь будет ваш код подсчёта количества элементов в списке
