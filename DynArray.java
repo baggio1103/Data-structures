@@ -68,9 +68,8 @@ public class DynArray<T> {
 
     public void insert(T item, int index) {
         // ваш код
-        if (index < capacity && index >= 0) {
+        if (index <= capacity && index >= 0) {
             count++;
-
             if (count >= capacity) {
                 makeArray(array.length);
                 if (index == 0) {
