@@ -1,3 +1,4 @@
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -68,7 +69,7 @@ public class DynArray<T> {
 
     public void insert(T item, int index) {
         // ваш код
-        if (index <= capacity && index >= 0) {
+        if (index <= count && index >= 0) {
             count++;
             if (count >= capacity) {
                 makeArray(array.length);
@@ -78,14 +79,13 @@ public class DynArray<T> {
                     }
                     array[index] = item;
                 } else if (index == count - 2) {
-                    System.out.println(" love u endze");
                     T type = array[index];
                     array[index + 1] = type;
                     array[index] = item;
                 } else if (index == capacity - 1) {
                     array[index] = item;
                 } else {
-                    for (int i = count - 1; i >= index; i--) {
+                    for (int i = count - 2; i >= index; i--) {
                         array[i + 1] = array[i];
                     }
                     array[index] = item;
@@ -144,4 +144,5 @@ public class DynArray<T> {
             capacity = capacity * 2 / 3;
         }
     }
+
 }
