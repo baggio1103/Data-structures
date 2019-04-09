@@ -1,4 +1,3 @@
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -39,8 +38,8 @@ public class DynArray<T> {
             for (int i = 0; i < count; i++) {
                 array[i] = temp[i];
             }
-        } else if (count < capacity * 2 / 3) {
-            capacity = capacity * 2 / 3;
+        } else if (count < capacity * 0.5) {
+            capacity = (int) (capacity * 0.5);
             array = (T[]) Array.newInstance(this.clazz, capacity);
             for (int i = 0; i < count; i++) {
                 array[i] = temp[i];
@@ -61,7 +60,7 @@ public class DynArray<T> {
 
     public T getItem(int index) {
         // ваш код
-        if (index < capacity && index >= 0) {
+        if (index < count && index >= 0) {
             return array[index];
         } else
             throw new IndexOutOfBoundsException();
@@ -138,11 +137,13 @@ public class DynArray<T> {
         } else
             throw new IndexOutOfBoundsException();
 
-        if (count < 16) {
-            capacity = 16;
-        } else if (count < capacity * 2 / 3) {
-            capacity = capacity * 2 / 3;
+        if (count < capacity * 0.5) {
+            if(capacity / 1.5 <= 16)
+                 makeArray(16);
+            else
+            {
+                makeArray(array.length);
+            }
         }
     }
-
 }
