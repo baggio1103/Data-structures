@@ -34,11 +34,12 @@ public class DynArray<T> {
                 array[i] = temp[i];
             }
         } else if (count <= 16) {
-            array = (T[]) Array.newInstance(this.clazz, 16);
+            capacity = 16;
+            array = (T[]) Array.newInstance(this.clazz, capacity);
             for (int i = 0; i < count; i++) {
                 array[i] = temp[i];
             }
-        } else if (count < capacity / 1.5) {
+        } else if (count < capacity / 2) {
             capacity = (int) (capacity / 1.5);
             array = (T[]) Array.newInstance(this.clazz, capacity);
             for (int i = 0; i < count; i++) {
@@ -137,13 +138,11 @@ public class DynArray<T> {
         } else
             throw new IndexOutOfBoundsException();
 
-        if (count < capacity * 0.5) {
-            if(capacity / 1.5 <= 16)
-                makeArray(16);
-            else
-            {
-                makeArray(array.length);
-            }
+        if (count <= 16){
+            makeArray(16);
+        }
+        else if (count < capacity/2){
+            makeArray(array.length);
         }
     }
 }
