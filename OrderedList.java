@@ -10,7 +10,6 @@ class Node<T>
         next = null;
         prev = null;
     }
-
 }
 public class OrderedList<T> {
     public Node<T> head;
@@ -18,6 +17,7 @@ public class OrderedList<T> {
     private boolean _ascending;
     public int count = 0;
 
+    
     public OrderedList(boolean asc) {
         head = null;
         tail = null;
@@ -188,5 +188,8 @@ public class OrderedList<T> {
         }
         return r;
     }
-    
+
+    public static void main(String[] args) {
+        OrderedList list = new OrderedList(true);
+    }
 }
