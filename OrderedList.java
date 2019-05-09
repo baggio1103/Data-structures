@@ -168,6 +168,16 @@ public class OrderedList<T> {
         count = 0;
     }
 
+    public int count() {
+        count = 0;
+        Node node = head;
+        while (node != null) {
+            count++;
+            node = node.next;
+        }
+        return count;
+    }
+
     public void printList() {
         Node node = head;
         while (node != null) {
@@ -190,3 +200,4 @@ public class OrderedList<T> {
     }
 
 }
+
