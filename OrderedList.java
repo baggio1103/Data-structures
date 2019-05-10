@@ -55,13 +55,14 @@ public class OrderedList<T> {
             head = newNode;
             head.next = node1;
             tail = node1;
+            tail.prev = head;
             count++;
         } else if (count == 1 && compare(value, head.value) >= 0) {
             newNode = new Node(value);
-            Node node1 = tail;
             tail.next = newNode;
             tail = newNode;
-            tail.prev = node1;
+//            tail.prev = node1;
+            tail.prev = head;
             count++;
         } else if (compare(value, head.value) <= 0) {
             newNode = new Node(value);
@@ -86,7 +87,9 @@ public class OrderedList<T> {
                     node1.next = newNode;
                     newNode.next = node;
                     if (node == tail) {
+                        Node nod = tail.prev;
                         tail.prev = newNode;
+                        newNode.prev = nod;
                     }
                     count++;
                     break;
@@ -187,6 +190,15 @@ public class OrderedList<T> {
         System.out.println();
     }
 
+    public void reversedList(){
+        Node node = tail;
+        while (node != null){
+            System.out.print(node.value + " ");
+            node = node.prev;
+        }
+        System.out.println();
+    }
+
     ArrayList<Node<T>> getAll() // выдать все элементы упорядоченного
     // списка в виде стандартного списка
     {
@@ -198,6 +210,4 @@ public class OrderedList<T> {
         }
         return r;
     }
-
 }
-
