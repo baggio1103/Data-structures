@@ -76,12 +76,11 @@ public class OrderedList<T> {
         } else {
             while (compare(value, (T) node.value) >= 0) {
                 if (node.next != null && compare(value, (T) node.next.value) <= 0) {
-                    Node node1 = node;
-                    node = node.next;
-                    node1.next = newNode;
-                    newNode.next = node;
-                    node.prev = newNode;
-                    newNode.prev = node1;
+                    Node node1 = node.next;
+                    node.next = newNode;
+                    newNode.next = node1;
+                    node1.prev = newNode;
+                    newNode.prev = node;
                     if (node == tail) {
                         Node nod = tail.prev;
                         tail.prev = newNode;
@@ -111,42 +110,44 @@ public class OrderedList<T> {
 
     public void delete(T val) {
         // здесь будет ваш код
-
-        Node node = head;
-        Node newNode;
-        if (head == null) {
-            tail = null;
-        }
-        if (head.next == null && head.value.equals(val)) {
-            head = null;
-            tail = null;
-            count--;
-        }
-        while (node != null) {
-            if (head.value.equals(val)) {
-                newNode = head.next;
-                head = null;
-                head = newNode;
-                head.prev = null;
-                count--;
-                break;
+        if (count() > 0) {
+            Node node = head;
+            Node newNode;
+            if (head == null) {
+                tail = null;
             }
-            if (node.next == tail && tail.value.equals(val)) {
-                node.next = null;
-                tail = node;
-                tail.prev = node.prev;
+            if (head.next == null && head.value.equals(val)) {
+                head = null;
+                tail = null;
                 count--;
-                break;
-            } else if (node != tail && node.next.value.equals(val)) {
-                newNode = node;
-                node = node.next;
-                Node nod = node.next;
-                newNode.next = nod;
-                nod.prev = newNode;
-                count--;
-                break;
             } else {
-                node = node.next;
+                while (node != null) {
+                    if (head.value.equals(val)) {
+                        newNode = head.next;
+                        head = null;
+                        head = newNode;
+                        head.prev = null;
+                        count--;
+                        break;
+                    }
+                    if (node.next == tail && tail.value.equals(val)) {
+                        node.next = null;
+                        tail = node;
+                        tail.prev = node.prev;
+                        count--;
+                        break;
+                    } else if (node != tail && node.next.value.equals(val)) {
+                        newNode = node;
+                        node = node.next;
+                        Node nod = node.next;
+                        newNode.next = nod;
+                        nod.prev = newNode;
+                        count--;
+                        break;
+                    } else {
+                        node = node.next;
+                    }
+                }
             }
         }
     }
@@ -207,5 +208,4 @@ public class OrderedList<T> {
         }
         return r;
     }
-
 }
