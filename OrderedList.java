@@ -43,13 +43,12 @@ public class OrderedList<T> {
         // автоматическая вставка value
         // в нужную позицию
         Node node = head;
-        Node newNode;
+        Node newNode = new Node(value);
         if (count == 0) {
             head = new Node<>(value);
             tail = head;
             count++;
         } else if (count == 1 && compare(value, head.value) < 0) {
-            newNode = new Node(value);
             Node node1 = head;
             head.prev = newNode;
             head = newNode;
@@ -58,21 +57,18 @@ public class OrderedList<T> {
             tail.prev = head;
             count++;
         } else if (count == 1 && compare(value, head.value) >= 0) {
-            newNode = new Node(value);
             tail.next = newNode;
             tail = newNode;
 //            tail.prev = node1;
             tail.prev = head;
             count++;
         } else if (compare(value, head.value) <= 0) {
-            newNode = new Node(value);
             Node node1 = head;
             head.prev = newNode;
             head = newNode;
             head.next = node1;
             count++;
         } else if (compare(value, tail.value) >= 0) {
-            newNode = new Node(value);
             Node node1 = tail;
             tail.next = newNode;
             tail = newNode;
@@ -83,9 +79,11 @@ public class OrderedList<T> {
                 if (node.next != null && compare(value, (T) node.next.value) <= 0) {
                     Node node1 = node;
                     node = node.next;
-                    newNode = new Node(value);
                     node1.next = newNode;
                     newNode.next = node;
+                    node.prev = newNode;
+//                    node.prev.prev = node1;
+                    newNode.prev = node1;
                     if (node == tail) {
                         Node nod = tail.prev;
                         tail.prev = newNode;
@@ -144,10 +142,11 @@ public class OrderedList<T> {
             } else if (node != tail && node.next.value.equals(val)) {
                 newNode = node;
                 node = node.next;
-                newNode.next = node.next;
+                Node nod = node.next;
+                newNode.next = nod;
+                nod.prev = newNode;
                 count--;
                 break;
-
             } else {
                 node = node.next;
             }
