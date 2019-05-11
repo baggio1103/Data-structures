@@ -59,7 +59,6 @@ public class OrderedList<T> {
         } else if (count == 1 && compare(value, head.value) >= 0) {
             tail.next = newNode;
             tail = newNode;
-//            tail.prev = node1;
             tail.prev = head;
             count++;
         } else if (compare(value, head.value) <= 0) {
@@ -82,7 +81,6 @@ public class OrderedList<T> {
                     node1.next = newNode;
                     newNode.next = node;
                     node.prev = newNode;
-//                    node.prev.prev = node1;
                     newNode.prev = node1;
                     if (node == tail) {
                         Node nod = tail.prev;
@@ -189,9 +187,9 @@ public class OrderedList<T> {
         System.out.println();
     }
 
-    public void reversedList(){
+    public void reversedList() {
         Node node = tail;
-        while (node != null){
+        while (node != null) {
             System.out.print(node.value + " ");
             node = node.prev;
         }
@@ -209,4 +207,5 @@ public class OrderedList<T> {
         }
         return r;
     }
+
 }
