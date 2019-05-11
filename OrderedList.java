@@ -44,38 +44,110 @@ public class OrderedList<T> {
         // в нужную позицию
         Node node = head;
         Node newNode = new Node(value);
+        if (_ascending == true) {
+            if (count == 0) {
+                head = new Node<>(value);
+                tail = head;
+                count++;
+            } else if (count == 1 && compare(value, head.value) < 0) {
+                Node node1 = head;
+                head.prev = newNode;
+                head = newNode;
+                head.next = node1;
+                tail = node1;
+                tail.prev = head;
+                count++;
+            } else if (count == 1 && compare(value, head.value) >= 0) {
+                tail.next = newNode;
+                tail = newNode;
+                tail.prev = head;
+                count++;
+            } else if (compare(value, head.value) <= 0) {
+                Node node1 = head;
+                head.prev = newNode;
+                head = newNode;
+                head.next = node1;
+                count++;
+            } else if (compare(value, tail.value) >= 0) {
+                Node node1 = tail;
+                tail.next = newNode;
+                tail = newNode;
+                tail.prev = node1;
+                count++;
+            } else {
+                while (compare(value, (T) node.value) >= 0) {
+                    if (node.next != null && compare(value, (T) node.next.value) <= 0) {
+                        Node node1 = node.next;
+                        node.next = newNode;
+                        newNode.next = node1;
+                        node1.prev = newNode;
+                        newNode.prev = node;
+                        if (node == tail) {
+                            Node nod = tail.prev;
+                            tail.prev = newNode;
+                            newNode.prev = nod;
+                        }
+                        count++;
+                        break;
+                    } else
+                        node = node.next;
+                    if (node == null) {
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            addDescending(value);
+        }
+    }
+
+    public Node<T> find(T val) {
+        Node node = head;
+        while (node != null) {
+            if (node.value.equals(val)) {
+                return node;
+            } else
+                node = node.next;
+        }
+        return null;
+    }
+
+    public void addDescending(T value){
+        Node node = head;
+        Node newNode = new Node(value);
         if (count == 0) {
             head = new Node<>(value);
             tail = head;
             count++;
         } else if (count == 1 && compare(value, head.value) < 0) {
-            Node node1 = head;
-            head.prev = newNode;
-            head = newNode;
-            head.next = node1;
-            tail = node1;
+            head.next = newNode;
+            tail = newNode;
             tail.prev = head;
             count++;
         } else if (count == 1 && compare(value, head.value) >= 0) {
-            tail.next = newNode;
-            tail = newNode;
-            tail.prev = head;
+           Node nod = head;
+           head.prev = newNode;
+           head = newNode;
+           head.next = nod;
+           tail = nod;
+           tail.prev = head;
+           count++;
+        } else if (compare(value, tail.value) <= 0) {
+           Node node1 = tail;
+           tail.next = newNode;
+           tail = newNode;
+           tail.prev = node1;
             count++;
-        } else if (compare(value, head.value) <= 0) {
+        } else if (compare(value, head.value) >= 0) {
             Node node1 = head;
             head.prev = newNode;
             head = newNode;
             head.next = node1;
             count++;
-        } else if (compare(value, tail.value) >= 0) {
-            Node node1 = tail;
-            tail.next = newNode;
-            tail = newNode;
-            tail.prev = node1;
-            count++;
         } else {
-            while (compare(value, (T) node.value) >= 0) {
-                if (node.next != null && compare(value, (T) node.next.value) <= 0) {
+            while (compare(value, (T) node.value) <= 0) {
+                if (node.next != null && compare(value, (T) node.next.value) >= 0) {
                     Node node1 = node.next;
                     node.next = newNode;
                     newNode.next = node1;
@@ -95,17 +167,6 @@ public class OrderedList<T> {
                 }
             }
         }
-    }
-
-    public Node<T> find(T val) {
-        Node node = head;
-        while (node != null) {
-            if (node.value.equals(val)) {
-                return node;
-            } else
-                node = node.next;
-        }
-        return null;
     }
 
     public void delete(T val) {
