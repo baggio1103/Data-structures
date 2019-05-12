@@ -29,14 +29,12 @@ public class OrderedList<T> {
         // 0 если v1 == v2
         // +1 если v1 > v2
         if (v1 instanceof Integer && v2 instanceof Integer) {
-            if ((Integer) v1 > (Integer) v2) {
-                return 1;
-            } else if ((Integer) v1 < (Integer) v2) {
-                return -1;
-            } else
-                return 0;
-        } else
-            return 0;
+         return ((Integer) v1).compareTo((Integer) v2);
+        }
+        else if (v1 instanceof String && v2 instanceof String) {
+            return ((String) v1).compareTo((String) v2);
+        }
+        else return 0;
     }
 
     public void add(T value) {
@@ -126,18 +124,18 @@ public class OrderedList<T> {
             tail.prev = head;
             count++;
         } else if (count == 1 && compare(value, head.value) >= 0) {
-           Node nod = head;
-           head.prev = newNode;
-           head = newNode;
-           head.next = nod;
-           tail = nod;
-           tail.prev = head;
-           count++;
+            Node nod = head;
+            head.prev = newNode;
+            head = newNode;
+            head.next = nod;
+            tail = nod;
+            tail.prev = head;
+            count++;
         } else if (compare(value, tail.value) <= 0) {
-           Node node1 = tail;
-           tail.next = newNode;
-           tail = newNode;
-           tail.prev = node1;
+            Node node1 = tail;
+            tail.next = newNode;
+            tail = newNode;
+            tail.prev = node1;
             count++;
         } else if (compare(value, head.value) >= 0) {
             Node node1 = head;
