@@ -49,7 +49,7 @@ class NativeDictionary<T>
         // значение value по ключу key
         int counter = hashFun(key);
         int isEmpty = isEmpty(slots);
-        if (isEmpty >= 0) {
+        if (isEmpty != 0) {
             while (slots[counter] != null) {
                 counter += 3;
                 counter %= size;
