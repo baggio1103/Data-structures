@@ -1,43 +1,39 @@
 import java.lang.reflect.Array;
 
-class NativeDictionary<T>
-{
+class NativeDictionary<T> {
     public int size;
-    public String [] slots;
-    public T [] values;
+    public String[] slots;
+    public T[] values;
 
-    public NativeDictionary(int sz, Class clazz)
-    {
+    public NativeDictionary(int sz, Class clazz) {
         size = sz;
         slots = new String[size];
         values = (T[]) Array.newInstance(clazz, this.size);
     }
 
-    public int hashFun(String key)
-    {
+    public int hashFun(String key) {
         // всегда возвращает корректный индекс слота
         int result = 0;
-        for (int i = 0; i < key.length(); i++){
-            result += (int)key.charAt(i);
+        for (int i = 0; i < key.length(); i++) {
+            result += (int) key.charAt(i);
         }
         result %= size;
         return result;
     }
 
-    public boolean isKey(String key)
-    {
+    public boolean isKey(String key) {
         // возвращает true если ключ имеется,
         // иначе false
         int times = 0;
         int counter = hashFun(key);
-        while (slots[counter] != null){
-            if (slots[counter].equals(key)){
+        while (slots[counter] != null) {
+            if (slots[counter].equals(key)) {
                 return true;
             }
             counter += 3;
             counter %= size;
             times++;
-            if (times == size){
+            if (times == size) {
                 return false;
             }
         }
@@ -50,7 +46,7 @@ class NativeDictionary<T>
         int counter = hashFun(key);
         int isEmpty = isEmpty(slots);
         if (isEmpty != 0) {
-            while (slots[counter] != null) {
+            while (slots[counter] != null && !values[counter].equals(value)) {
                 counter += 3;
                 counter %= size;
             }
@@ -59,10 +55,10 @@ class NativeDictionary<T>
         }
     }
 
-    public int isEmpty(String [] array){
+    public int isEmpty(String[] array) {
         int amount = 0;
-        for (int i = 0; i < array.length; i++){
-            if (array[i] == null){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
                 amount++;
             }
         }
@@ -89,11 +85,13 @@ class NativeDictionary<T>
     }
 
     public void display() {
-        for (int i = 0; i < size; i++){
+        System.out.println("Slots:");
+        for (int i = 0; i < size; i++) {
             System.out.print("| " + slots[i] + " ");
         }
         System.out.println("|");
-        for (int i = 0; i < size; i++){
+        System.out.println("Values");
+        for (int i = 0; i < size; i++) {
             System.out.print("| " + values[i] + " ");
         }
         System.out.println("|");
