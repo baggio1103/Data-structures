@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 public class PowerSet {
-public ArrayList list;  
+    public ArrayList list;
     public PowerSet() {
         // ваша реализация хранилища
-      list = new ArrayList();
+        list = new ArrayList();
     }
 
     public int size() {
@@ -98,7 +98,7 @@ public ArrayList list;
         // подмножество текущего множества,
         // иначе false
         int counter = 0;
-        if (set2.size() < list.size()) {
+        if (set2.size() <= list.size()) {
             for (int i = 0; i < list.size(); i++) {
                 if (set2.get((String) list.get(i))) {
                     counter++;
