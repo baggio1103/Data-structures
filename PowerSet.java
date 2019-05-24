@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 public class PowerSet {
-    public ArrayList list;
-
+  
     public PowerSet() {
         // ваша реализация хранилища
-        list = new ArrayList();
+      ArrayList list = new ArrayList();
     }
 
     public int size() {
