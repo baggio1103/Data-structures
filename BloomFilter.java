@@ -45,10 +45,7 @@ public class BloomFilter
     public boolean isValue(String str1)
     {
         // проверка, имеется ли строка str1 в фильтре
-        if (bits[hash1(str1)] == 1) {
-            return true;
-        }
-        else if (bits[hash2(str1)] == 1){
+        if (bits[hash1(str1)] == 1 || bits[hash2(str1)] == 1) {
             return true;
         }
         else
