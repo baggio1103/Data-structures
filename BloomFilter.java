@@ -16,10 +16,11 @@ public class BloomFilter
         int code = 0;
         for(int i = 0; i < str1.length(); i++)
         {
-             code += (17)*(int)str1.charAt(i);
+             code += (int)str1.charAt(i);
 
         }
         // реализация ...
+        code *= 17;
         code %= filter_len;
         return code;
     }
@@ -29,8 +30,9 @@ public class BloomFilter
         // реализация ...
        int code = 0;
        for (int i = 0; i < str1.length(); i++){
-           code += (223)*(int)str1.charAt(i);
+           code += (int)str1.charAt(i);
        }
+        code *= 223;
         code %= filter_len;
         return code;
     }
