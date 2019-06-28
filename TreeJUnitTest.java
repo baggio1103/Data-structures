@@ -38,22 +38,8 @@ public class SimpleTreeTest {
         SimpleTreeNode<Integer> root = new SimpleTreeNode<>(9, null);
         SimpleTree<Integer> tree = new SimpleTree<>(root);
         SimpleTreeNode<Integer> node1 = new SimpleTreeNode<>(4, root);
-        SimpleTreeNode<Integer> node2 = new SimpleTreeNode<>(17, root);
-        SimpleTreeNode<Integer> node3 = new SimpleTreeNode<>(3, root);
-        SimpleTreeNode<Integer> node4 = new SimpleTreeNode<>(6, root);
-        SimpleTreeNode<Integer> node5 = new SimpleTreeNode<>(5, node1);
-        SimpleTreeNode<Integer> node6 = new SimpleTreeNode<>(7,node5);
-        SimpleTreeNode<Integer> node7 = new SimpleTreeNode<>(22, node1);
-        SimpleTreeNode<Integer> node8 = new SimpleTreeNode<>(20, node1);
         tree.AddChild(root, node1);
-        tree.AddChild(root, node2);
-        tree.AddChild(node1, node3);
-        tree.AddChild(node1,node4);
-        tree.AddChild(node4,node5);
-        tree.AddChild(node4,node6);
-        tree.AddChild(node2,node7);
-        tree.AddChild(node7,node8);
-        tree.printTree(tree.GetAllNodes());
+        assertEquals(2, tree.GetAllNodes().size());
     }
 
 
