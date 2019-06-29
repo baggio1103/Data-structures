@@ -72,5 +72,26 @@ public class SimpleTreeTest {
 
     @Test
     public void leafCount() {
+        SimpleTreeNode<Integer> root = new SimpleTreeNode<>(9, null);
+        SimpleTree<Integer> tree = new SimpleTree<>(root);
+        SimpleTreeNode<Integer> node1 = new SimpleTreeNode<>(4, root);
+        SimpleTreeNode<Integer> node2 = new SimpleTreeNode<>(3, root);
+        SimpleTreeNode<Integer> node3 = new SimpleTreeNode<>(6, root);
+        tree.AddChild(root, node1);
+        assertEquals(1, tree.LeafCount());
+        SimpleTreeNode<Integer> node4 = new SimpleTreeNode<>(5, root);
+        SimpleTreeNode<Integer> node5 = new SimpleTreeNode<>(7, root);
+        SimpleTreeNode<Integer> node6 = new SimpleTreeNode<>(17, root);
+        SimpleTreeNode<Integer> node7 = new SimpleTreeNode<>(22, root);
+        SimpleTreeNode<Integer> node8 = new SimpleTreeNode<>(20, root);
+        tree.AddChild(root, node6);
+        tree.AddChild(node1,node2);
+        tree.AddChild(node1,node3);
+        tree.AddChild(node3,node4);
+        tree.AddChild(node3,node5);
+        tree.AddChild(node6,node7);
+        tree.AddChild(node7,node8);
+        assertEquals(4,tree.LeafCount());
+
     }
 }
