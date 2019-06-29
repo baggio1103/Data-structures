@@ -18,7 +18,6 @@ public class SimpleTreeNode<T>
 class SimpleTree<T> {
     public SimpleTreeNode<T> Root; // корень, может быть null
     public int count;
-    public List<SimpleTreeNode<T>> nodes = new ArrayList<>();
     public List<SimpleTreeNode<T>> values = new ArrayList<>();
 
     public SimpleTree(SimpleTreeNode<T> root) {
@@ -40,40 +39,35 @@ class SimpleTree<T> {
 
     public void DeleteNode(SimpleTreeNode<T> NodeToDelete) {
         // ваш код удаления существующего узла NodeToDelete
-        if (NodeToDelete == Root){
+        if (NodeToDelete == Root) {
             Root = null;
-        }
-        else {
+        } else {
             NodeToDelete.Parent.Children.remove(NodeToDelete);
         }
         count--;
     }
 
-
-
-
-    public List<SimpleTreeNode<T>> GetAllNodes(){
-      collectNodes(Root, nodes);
-      return nodes;
+    public List<SimpleTreeNode<T>> GetAllNodes() {
+        List<SimpleTreeNode<T>> listOfNodes = new ArrayList<>();
+        GetAllNodesRec(Root, listOfNodes);
+        return listOfNodes;
     }
 
-    public void collectNodes(SimpleTreeNode<T> node, List<SimpleTreeNode<T>> list) {
-            list.add(node);
-            for (SimpleTreeNode<T> node1 : node.Children) {
-                    if (node1.haveChild) {
-                        collectNodes(node1, list);
-                    } else
-                        list.add(node1);
-            }
+    public void GetAllNodesRec(SimpleTreeNode<T> node, List<SimpleTreeNode<T>> list) {
+        list.add(node);
+        for (SimpleTreeNode<T> node1 : node.Children) {
+            if (node1.haveChild) {
+                GetAllNodesRec(node1, list);
+            } else
+                list.add(node1);
+        }
     }
 
     public List<SimpleTreeNode<T>> FindNodesByValue(T val) {
         // ваш код поиска узлов по значению
-        SimpleTreeNode<T> node = Root;
-        collectNodes(node, values);
         List<SimpleTreeNode<T>> list = new ArrayList<>();
-        for (SimpleTreeNode<T> nod : values){
-            if (nod.NodeValue.equals(val)){
+        for (SimpleTreeNode<T> nod : GetAllNodes()) {
+            if (nod.NodeValue.equals(val)) {
                 list.add(nod);
             }
         }
@@ -83,25 +77,24 @@ class SimpleTree<T> {
     public void MoveNode(SimpleTreeNode<T> OriginalNode, SimpleTreeNode<T> NewParent) {
         // ваш код перемещения узла вместе с его поддеревом --
         // в качестве дочернего для узла NewParent
-        if (OriginalNode == Root){
+        if (OriginalNode == Root) {
             return;
         }
 
         OriginalNode.Parent.Children.remove(OriginalNode);
 
-        if (OriginalNode.Parent.Children.size() == 0){
+        if (OriginalNode.Parent.Children.size() == 0) {
             OriginalNode.Parent.haveChild = false;
         }
 
-       OriginalNode.Parent = null;
-       NewParent.Children.add(OriginalNode);
-       NewParent.haveChild = true;
+        OriginalNode.Parent = null;
+        NewParent.Children.add(OriginalNode);
+        NewParent.haveChild = true;
 
     }
 
-
     public void printTree(List<SimpleTreeNode<T>> list) {
-        for (SimpleTreeNode<T> nod : list){
+        for (SimpleTreeNode<T> nod : list) {
             System.out.print(nod.NodeValue + " ");
         }
         System.out.println();
@@ -116,12 +109,13 @@ class SimpleTree<T> {
         // количество листьев в дереве
         int leafCount = 0;
         List<SimpleTreeNode<T>> leaves = new ArrayList<>();
-        collectNodes(Root, leaves);
-        for (SimpleTreeNode<T> nods : leaves){
-            if (!nods.haveChild){
+        GetAllNodesRec(Root, leaves);
+        for (SimpleTreeNode<T> nods : leaves) {
+            if (!nods.haveChild) {
                 leafCount++;
             }
         }
         return leafCount;
     }
+    
 }
