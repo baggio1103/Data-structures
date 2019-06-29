@@ -108,10 +108,8 @@ class SimpleTree<T> {
     public int LeafCount() {
         // количество листьев в дереве
         int leafCount = 0;
-        List<SimpleTreeNode<T>> leaves = new ArrayList<>();
-        GetAllNodesRec(Root, leaves);
-        for (SimpleTreeNode<T> nods : leaves) {
-            if (!nods.haveChild) {
+        for (SimpleTreeNode<T> nods : GetAllNodes()) {
+            if (nods.Children.size() == 0) {
                 leafCount++;
             }
         }
