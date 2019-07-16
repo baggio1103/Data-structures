@@ -1,5 +1,5 @@
-import sun.misc.Queue;
 import java.util.*;
+
 class BSTNode<T>
 {
     public int NodeKey; // ключ узла
@@ -296,12 +296,12 @@ class BST<T>
         System.out.print(node.NodeKey + " ");
     }
 
-    public  ArrayList<BSTNode> WideAllNodes() throws InterruptedException {
+    public  ArrayList<BSTNode> WideAllNodes() {
         ArrayList<BSTNode> list = new ArrayList<>();
         Queue<BSTNode> queue = new Queue<>();
         queue.enqueue(Root);
         System.out.print("\nThe level order traverse of the tree is : ");
-        while (!queue.isEmpty()){
+        while (queue.size() > 0){
             BSTNode node = queue.dequeue();
             list.add(node);
             System.out.print(node.NodeKey + " ");
