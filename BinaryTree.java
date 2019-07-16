@@ -1,4 +1,5 @@
-import java.io.*;
+import sun.misc.Queue;
+
 import java.util.*;
 
 
@@ -139,7 +140,7 @@ class BST<T>
         BSTNode<T> tempNode;
         if (bst.NodeHasKey) {
            count--;
-            //case1: a node has no node
+            //case1: a node has no child-node
             if (!bst.Node.haveOneChild) {
                 if (bst.Node == Root){ // case when the only node is Root and it is to be deleted
                     Root = null;
@@ -151,7 +152,7 @@ class BST<T>
                     }
                 }
             }
-            //case2: a node has two children
+            //case2: a node has two child-nodes
             else if (bst.Node.haveTwoChildren) {
                 if (bst.Node == Root) {
                     tempNode = Root.RightChild;
@@ -204,7 +205,7 @@ class BST<T>
                 }
             }
 
-            //case3: a node has one node
+            //case3: a node has one-child node
             else {
                 if (bst.Node == Root){
                     if (Root.RightChild == null){
@@ -237,13 +238,13 @@ class BST<T>
         return false; // если узел не найден
     }
 
-    public void printTree(BSTNode<T> root){
+    public void treeTraverse(BSTNode<T> root){
         if (root == null){
             return;
         }
         System.out.print(root.NodeKey + " ");
-        printTree(root.LeftChild);
-        printTree(root.RightChild);
+        treeTraverse(root.LeftChild);
+        treeTraverse(root.RightChild);
     }
 
 
@@ -251,5 +252,72 @@ class BST<T>
     {
         return count; // количество узлов в дереве
     }
-    
+
+    public ArrayList<BSTNode> DeepAllNodes(int treeOrder ) {
+        ArrayList<BSTNode> list = new ArrayList<>();
+        if (treeOrder == 0) {
+            System.out.print("The In-order traversal of binary tree is : ");
+            inOrder(list, Root);
+        } else if (treeOrder == 1) {
+            System.out.print("\nThe Post-order traversal of binary tree is : ");
+            postOrder(list, Root);
+        } else if (treeOrder == 2) {
+            System.out.print("\nThe Pre-order traversal of binary tree is : ");
+            preOrder(list, Root);
+        }
+
+        return null;
+    }
+
+    public void preOrder(ArrayList<BSTNode> list, BSTNode<T> node){
+        if (node == null){
+            return ;
+        }
+        list.add(node);
+        System.out.print(node.NodeKey + " ");
+        preOrder(list, node.LeftChild);
+        preOrder(list, node.RightChild);
+    }
+
+    public void inOrder(ArrayList<BSTNode> list, BSTNode<T> node){
+        if (node == null){
+            return;
+        }
+        inOrder(list, node.LeftChild);
+        list.add(node);
+        System.out.print(node.NodeKey + " ");
+        inOrder(list, node.RightChild);
+    }
+
+    public void postOrder(ArrayList<BSTNode> list, BSTNode<T> node){
+        if (node == null){
+            return;
+        }
+        postOrder(list, node.LeftChild);
+        postOrder(list, node.RightChild);
+        list.add(node);
+        System.out.print(node.NodeKey + " ");
+    }
+
+    public  ArrayList<BSTNode> WideAllNodes() throws InterruptedException {
+        ArrayList<BSTNode> list = new ArrayList<>();
+        Queue<BSTNode> queue = new Queue<>();
+        queue.enqueue(Root);
+        System.out.print("\nThe level order traverse of the tree is : ");
+        while (!queue.isEmpty()){
+            BSTNode node = queue.dequeue();
+            list.add(node);
+            System.out.print(node.NodeKey + " ");
+            if (node.LeftChild != null && node.RightChild != null){
+                queue.enqueue(node.LeftChild);
+                queue.enqueue(node.RightChild);
+            }else if (node.LeftChild != null){
+                queue.enqueue(node.LeftChild);
+            }
+            else if (node.RightChild != null){
+                queue.enqueue(node.RightChild);
+            }
+        }
+        return list;
+    }
 }
