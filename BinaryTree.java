@@ -38,13 +38,11 @@ class BSTFind<T>
     }
 }
 
-class BST<T>
-{
+class BST<T> {
     BSTNode<T> Root; // корень дерева, или null
     public int count;
 
-    public BST(BSTNode<T> node)
-    {
+    public BST(BSTNode<T> node) {
         Root = node;
         count = 1;
     }
@@ -54,18 +52,17 @@ class BST<T>
         BSTFind<T> bstFind = new BSTFind<>();
         BSTNode<T> parentNode;// in case of null we have a parentNode to which a new node is added
         BSTNode<T> node = Root;
-        if (node.NodeKey == key){
+        if (node.NodeKey == key) {
             bstFind.Node = node;
             bstFind.NodeHasKey = true;
             bstFind.Node.Parent = null;
             return bstFind;
-        }
-        else {
+        } else {
             while (true) {
                 if (node.NodeKey == key) {
                     bstFind.Node = node;
                     bstFind.NodeHasKey = true;
-                    if (bstFind.Node.RightChild != null && bstFind.Node.LeftChild != null){
+                    if (bstFind.Node.RightChild != null && bstFind.Node.LeftChild != null) {
                         bstFind.Node.haveTwoChildren = true;
                     }
                     return bstFind;
@@ -107,24 +104,21 @@ class BST<T>
         }
     }
 
-    public BSTNode<T> FinMinMax(BSTNode<T> FromNode, boolean FindMax)
-    {
+    public BSTNode<T> FinMinMax(BSTNode<T> FromNode, boolean FindMax) {
         // ищем максимальное/минимальное в поддереве
-        if (FindMax){
-            while (true){
-                if (FromNode.RightChild == null){
+        if (FindMax) {
+            while (true) {
+                if (FromNode.RightChild == null) {
                     return FromNode;
-                }
-                else {
+                } else {
                     FromNode = FromNode.RightChild;
                 }
             }
-        }
-        else {
-            while (true){
-                if (FromNode.LeftChild == null){
+        } else {
+            while (true) {
+                if (FromNode.LeftChild == null) {
                     return FromNode;
-                }else {
+                } else {
                     FromNode = FromNode.LeftChild;
                 }
             }
@@ -136,12 +130,12 @@ class BST<T>
         BSTFind<T> bst = FindNodeByKey(key);
         BSTNode<T> tempNode;
         if (bst.NodeHasKey) {
-           count--;
+            count--;
             //case1: a node has no child-node
             if (!bst.Node.haveOneChild) {
-                if (bst.Node == Root){ // case when the only node is Root and it is to be deleted
+                if (bst.Node == Root) { // case when the only node is Root and it is to be deleted
                     Root = null;
-                }else {
+                } else {
                     if (bst.Node.leftOrRightChild) {
                         bst.Node.Parent.LeftChild = null;
                     } else {
@@ -153,8 +147,8 @@ class BST<T>
             else if (bst.Node.haveTwoChildren) {
                 if (bst.Node == Root) {
                     tempNode = Root.RightChild;
-                    while (true){
-                        if (tempNode.LeftChild == null){
+                    while (true) {
+                        if (tempNode.LeftChild == null) {
                             BSTNode<T> node1 = Root.RightChild;
                             tempNode.Parent = null;
                             Root = tempNode;
@@ -164,11 +158,11 @@ class BST<T>
                         tempNode = tempNode.LeftChild;
                     }
                     tempNode = tempNode.RightChild;
-                    while (tempNode != null){
-                        if (tempNode.LeftChild == null && tempNode.RightChild != null){
+                    while (tempNode != null) {
+                        if (tempNode.LeftChild == null && tempNode.RightChild != null) {
                             tempNode.Parent.LeftChild = tempNode.RightChild;
                             tempNode.RightChild.Parent = tempNode.Parent;
-                        }else {
+                        } else {
                             tempNode.Parent.LeftChild = null;
                         }
                         tempNode = tempNode.LeftChild;
@@ -204,18 +198,18 @@ class BST<T>
 
             //case3: a node has one-child node
             else {
-                if (bst.Node == Root){
-                    if (Root.RightChild == null){
+                if (bst.Node == Root) {
+                    if (Root.RightChild == null) {
                         tempNode = Root.LeftChild;
                         tempNode.Parent = null;
                         Root = tempNode;
-                    }else {
+                    } else {
                         tempNode = Root.RightChild;
                         tempNode.Parent = null;
                         Root = tempNode;
                     }
 
-                }else {
+                } else {
                     if (bst.Node.LeftChild == null) {
                         tempNode = bst.Node.RightChild;
                     } else {
@@ -235,8 +229,8 @@ class BST<T>
         return false; // если узел не найден
     }
 
-    public void treeTraverse(BSTNode<T> root){
-        if (root == null){
+    public void treeTraverse(BSTNode<T> root) {
+        if (root == null) {
             return;
         }
         System.out.print(root.NodeKey + " ");
@@ -245,12 +239,11 @@ class BST<T>
     }
 
 
-    public int Count()
-    {
+    public int Count() {
         return count; // количество узлов в дереве
     }
 
-    public ArrayList<BSTNode> DeepAllNodes(int treeOrder ) {
+    public ArrayList<BSTNode> DeepAllNodes(int treeOrder) {
         ArrayList<BSTNode> list = new ArrayList<>();
         if (treeOrder == 0) {
             System.out.print("The In-order traversal of binary tree is : ");
@@ -266,9 +259,9 @@ class BST<T>
         return null;
     }
 
-    public void preOrder(ArrayList<BSTNode> list, BSTNode<T> node){
-        if (node == null){
-            return ;
+    public void preOrder(ArrayList<BSTNode> list, BSTNode<T> node) {
+        if (node == null) {
+            return;
         }
         list.add(node);
         System.out.print(node.NodeKey + " ");
@@ -276,8 +269,8 @@ class BST<T>
         preOrder(list, node.RightChild);
     }
 
-    public void inOrder(ArrayList<BSTNode> list, BSTNode<T> node){
-        if (node == null){
+    public void inOrder(ArrayList<BSTNode> list, BSTNode<T> node) {
+        if (node == null) {
             return;
         }
         inOrder(list, node.LeftChild);
@@ -286,8 +279,8 @@ class BST<T>
         inOrder(list, node.RightChild);
     }
 
-    public void postOrder(ArrayList<BSTNode> list, BSTNode<T> node){
-        if (node == null){
+    public void postOrder(ArrayList<BSTNode> list, BSTNode<T> node) {
+        if (node == null) {
             return;
         }
         postOrder(list, node.LeftChild);
@@ -296,25 +289,25 @@ class BST<T>
         System.out.print(node.NodeKey + " ");
     }
 
-    public  ArrayList<BSTNode> WideAllNodes() {
-        ArrayList<BSTNode> list = new ArrayList<>();
-        Queue<BSTNode> queue = new Queue<>();
-        queue.enqueue(Root);
+    public ArrayList<BSTNode> WideAllNodes() {
+        ArrayList<BSTNode> array = new ArrayList<>();
+        LinkedList<BSTNode> list = new LinkedList<>();
+        list.add(Root);
         System.out.print("\nThe level order traverse of the tree is : ");
-        while (queue.size() > 0){
-            BSTNode node = queue.dequeue();
-            list.add(node);
+        while (list.size() > 0) {
+            BSTNode node = list.removeFirst();
+            array.add(node);
             System.out.print(node.NodeKey + " ");
-            if (node.LeftChild != null && node.RightChild != null){
-                queue.enqueue(node.LeftChild);
-                queue.enqueue(node.RightChild);
-            }else if (node.LeftChild != null){
-                queue.enqueue(node.LeftChild);
-            }
-            else if (node.RightChild != null){
-                queue.enqueue(node.RightChild);
+            if (node.LeftChild != null && node.RightChild != null) {
+                list.add(node.LeftChild);
+                list.add(node.RightChild);
+            } else if (node.LeftChild != null) {
+                list.add(node.LeftChild);
+            } else if (node.RightChild != null) {
+                list.add(node.RightChild);
             }
         }
-        return list;
+        return array;
     }
+
 }
