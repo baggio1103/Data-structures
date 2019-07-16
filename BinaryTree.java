@@ -1,8 +1,5 @@
 import sun.misc.Queue;
-
 import java.util.*;
-
-
 class BSTNode<T>
 {
     public int NodeKey; // ключ узла
