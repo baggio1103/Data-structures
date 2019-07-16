@@ -248,14 +248,17 @@ class BST<T> {
         if (treeOrder == 0) {
             System.out.print("The In-order traversal of binary tree is : ");
             inOrder(list, Root);
+            return list;
         } else if (treeOrder == 1) {
             System.out.print("\nThe Post-order traversal of binary tree is : ");
             postOrder(list, Root);
+            return list;
         } else if (treeOrder == 2) {
             System.out.print("\nThe Pre-order traversal of binary tree is : ");
             preOrder(list, Root);
+            return list;
         }
-
+        
         return null;
     }
 
@@ -311,3 +314,4 @@ class BST<T> {
     }
 
 }
+
