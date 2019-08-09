@@ -26,9 +26,11 @@ class Heap {
             return -1;
         } else {
             max = HeapArray[0];
-            int temp = HeapArray[HeapArray.length - 1];
-            HeapArray[0] = temp;
-            for (int i = 0; i < HeapArray.length; ) {
+            HeapArray[0] = HeapArray[HeapArray.length-1];
+            HeapArray[HeapArray.length-1] = -1;
+            int i = 0;
+            boolean greater = false;
+            while (i < HeapArray.length && !greater) {
                 if (2 * i + 1 < HeapArray.length) {
                     int node = Math.max(HeapArray[2 * i + 1], HeapArray[2 * i + 2]);
                     if (node > HeapArray[i]) {
@@ -41,9 +43,11 @@ class Heap {
                             i = 2 * i + 2;
                         }
                         HeapArray[i] = br;
+                    }else {
+                        greater = true;
                     }
-                } else {
-                    break;
+                }else {
+                    i = HeapArray.length;
                 }
             }
         }
@@ -82,5 +86,5 @@ class Heap {
         }
         System.out.println();
     }
-    
+
 }
