@@ -128,7 +128,7 @@ class SimpleGraph {
 
     public ArrayList<Vertex> stackToList(Stack<Integer> stack, ArrayList<Vertex> list) {
         while (!stack.empty()) {
-            list.add(new Vertex(stack.pop()));
+            list.add(0, new Vertex(stack.pop()));
         }
         return list;
     }
@@ -143,5 +143,5 @@ class SimpleGraph {
             System.out.println("There is no such a route");
         }
     }
-    
+
 }
