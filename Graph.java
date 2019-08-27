@@ -80,6 +80,10 @@ class SimpleGraph {
         ArrayList<Vertex> list = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
         vertex[VFrom].Hit = true;
+        if (IsEdge(VFrom, VTo) && VFrom == VTo){
+            stack.push(VFrom);
+            return stackToList(stack, list);
+        }
         stack.push(VFrom);
         return recursion(stack, stack.peek(), VTo, list);
 
