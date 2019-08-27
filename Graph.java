@@ -89,6 +89,13 @@ class SimpleGraph {
         ArrayList<Integer> adjacent = adjacent(vert); //This Arraylist gives a list of adjacent nodes
         if (adjacent.size() > 0) {
             for (int i = 0; i < adjacent.size(); i++) {
+                if (adjacent.get(i) == VTO) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    stack.push(adjacent.get(i));
+                    return stackToList(stack, list);
+                }
+            }
+            for (int i = 0; i < adjacent.size(); i++) {
                 if (adjacent.get(i) == VTO && !vertex[adjacent.get(i)].Hit) {
                     vertex[adjacent.get(i)].Hit = true;
                     stack.push(adjacent.get(i));
@@ -100,7 +107,7 @@ class SimpleGraph {
                 }
             }
         } else {
-            System.out.println(stack.pop() + " is taken out ");
+            stack.pop();
             if (stack.size() == 0) {
                 return null;
             } else
@@ -128,12 +135,12 @@ class SimpleGraph {
 
     public void print(ArrayList<Vertex> list) {
         if (list.size() != 0) {
-            System.out.print(" The route is : ");
-            for (int i = 0; i < list.size(); i++) {
-                System.out.print(list.get(i).Value + " ");
+            System.out.print("The route is : ");
+            for (Vertex vertex : list) {
+                System.out.print(vertex.Value + " ");
             }
         } else {
-            System.out.println(" There is no such a route");
+            System.out.println("There is no such a route");
         }
     }
     
