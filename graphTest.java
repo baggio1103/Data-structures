@@ -20,8 +20,10 @@ public class SimpleGraphTest {
         graph.AddEdge(3, 3);
         graph.AddEdge(3, 4);
         graph.print(graph.DepthFirstSearch(0,1));
+        System.out.println();
         graph.print(graph.DepthFirstSearch(0,4));
         System.out.println();
-        System.out.println(graph.DepthFirstSearch(0,1));
+        System.out.println(graph.DepthFirstSearch(0,1).size());
+
     }
 }
