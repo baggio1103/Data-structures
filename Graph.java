@@ -138,6 +138,7 @@ class SimpleGraph {
     }
 
     public void print(ArrayList<Vertex> list) {
+        System.out.println(list.size() +  " size");
         if (list.size() != 0) {
             System.out.print("The route is : ");
             for (Vertex vertex : list) {
