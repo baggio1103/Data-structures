@@ -17,6 +17,7 @@ class SimpleGraph {
     int[][] m_adjacency;
     int max_vertex;
 
+
     public SimpleGraph(int size) {
         max_vertex = size;
         m_adjacency = new int[size][size];
@@ -76,17 +77,25 @@ class SimpleGraph {
         m_adjacency[v2][v1] = 0;
     }
 
+    public void turnToFalse() {
+        for (Vertex v : vertex) {
+            v.Hit = false;
+        }
+    }
+
     public ArrayList<Vertex> DepthFirstSearch(int VFrom, int VTo) {
         ArrayList<Vertex> list = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
         vertex[VFrom].Hit = true;
-        if (IsEdge(VFrom, VTo) && VFrom == VTo){
+        if (IsEdge(VFrom, VTo) && VFrom == VTo) {
             stack.push(VFrom);
+            turnToFalse();
             return stackToList(stack, list);
+        } else {
+            stack.push(VFrom);
+            turnToFalse();
+            return recursion(stack, stack.peek(), VTo, list);
         }
-        stack.push(VFrom);
-        return recursion(stack, stack.peek(), VTo, list);
-
     }
 
     public ArrayList<Vertex> recursion(Stack<Integer> stack, int vert, int VTO, ArrayList<Vertex> list) {
@@ -138,15 +147,15 @@ class SimpleGraph {
     }
 
     public void print(ArrayList<Vertex> list) {
-        System.out.println(list.size() +  " size");
         if (list.size() != 0) {
             System.out.print("The route is : ");
             for (Vertex vertex : list) {
                 System.out.print(vertex.Value + " ");
             }
         } else {
-            System.out.println("There is no such a route");
+            System.out.print("There is no such a route");
         }
+        System.out.println();
     }
-
+    
 }
