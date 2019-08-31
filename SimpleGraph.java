@@ -1,11 +1,14 @@
 import java.util.*;
+import java.util.Stack;
 
 class Vertex
 {
     public int Value;
+    public boolean Hit;
     public Vertex(int val)
     {
         Value = val;
+        Hit = false;
     }
 }
 
@@ -13,6 +16,7 @@ class SimpleGraph {
     Vertex[] vertex;
     int[][] m_adjacency;
     int max_vertex;
+
 
     public SimpleGraph(int size) {
         max_vertex = size;
@@ -27,6 +31,7 @@ class SimpleGraph {
         for (int i = 0; i < vertex.length; i++) {
             if (vertex[i] == null) {
                 vertex[i] = new Vertex(value);
+                i = vertex.length;
             }
         }
     }
@@ -72,4 +77,85 @@ class SimpleGraph {
         m_adjacency[v2][v1] = 0;
     }
 
+    public void turnToFalse() {
+        for (Vertex v : vertex) {
+            v.Hit = false;
+        }
+    }
+
+    public ArrayList<Vertex> DepthFirstSearch(int VFrom, int VTo) {
+        ArrayList<Vertex> list = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        vertex[VFrom].Hit = true;
+        if (IsEdge(VFrom, VTo) && VFrom == VTo) {
+            stack.push(VFrom);
+            turnToFalse();
+            return stackToList(stack, list);
+        } else {
+            stack.push(VFrom);
+            turnToFalse();
+            return recursion(stack, stack.peek(), VTo, list);
+        }
+    }
+
+    public ArrayList<Vertex> recursion(Stack<Integer> stack, int vert, int VTO, ArrayList<Vertex> list) {
+        ArrayList<Integer> adjacent = adjacent(vert); //This Arraylist gives a list of adjacent nodes
+        if (adjacent.size() > 0) {
+            for (int i = 0; i < adjacent.size(); i++) {
+                if (adjacent.get(i) == VTO) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    stack.push(adjacent.get(i));
+                    return stackToList(stack, list);
+                }
+            }
+            for (int i = 0; i < adjacent.size(); i++) {
+                if (adjacent.get(i) == VTO && !vertex[adjacent.get(i)].Hit) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    stack.push(adjacent.get(i));
+                    return stackToList(stack, list);
+                } else if (!vertex[adjacent.get(i)].Hit) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    stack.push(adjacent.get(i));
+                    recursion(stack, stack.peek(), VTO, list);
+                }
+            }
+        } else {
+            stack.pop();
+            if (stack.size() == 0) {
+                return null;
+            } else
+                recursion(stack, stack.peek(), VTO, list);
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> adjacent(int vert) {
+        ArrayList<Integer> vs = new ArrayList<>();
+        for (int i = 0; i < vertex.length; i++) {
+            if ((i != vert) && IsEdge(i, vert) && !vertex[i].Hit) {
+                vs.add(i);
+            }
+        }
+        return vs;
+    }
+
+    public ArrayList<Vertex> stackToList(Stack<Integer> stack, ArrayList<Vertex> list) {
+        while (!stack.empty()) {
+            list.add(0, new Vertex(stack.pop()));
+        }
+        return list;
+    }
+
+    public void print(ArrayList<Vertex> list) {
+        if (list.size() != 0) {
+            System.out.print("The route is : ");
+            for (Vertex vertex : list) {
+                System.out.print(vertex.Value + " ");
+            }
+        } else {
+            System.out.print("There is no such a route");
+        }
+        System.out.println();
+    }
+    
 }
