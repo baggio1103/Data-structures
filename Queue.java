@@ -24,6 +24,14 @@ public class Queue<T> {
             return null; // null если очередь пустая
     }
 
+    public T peek(){
+        if (list.size() > 0){
+            T type = (T) list.get(0);
+            return type;
+        }else
+            return null;
+    }
+
     public int size() {
         return list.size();
         // размер очереди
@@ -43,5 +51,5 @@ public class Queue<T> {
         }
         return queue;
     }
-
+    
 }
