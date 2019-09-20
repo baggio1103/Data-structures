@@ -5,10 +5,12 @@ class Vertex
 {
     public int Value;
     public boolean Hit;
+    public int parent;
     public Vertex(int val)
     {
         Value = val;
         Hit = false;
+        parent = 0;
     }
 }
 
@@ -98,6 +100,56 @@ class SimpleGraph {
         }
     }
 
+    public ArrayList<Vertex> BreadthFirstSearch(int VFrom, int VTo) {
+        // Узлы задаются позициями в списке vertex.
+        // Возвращается список узлов -- путь из VFrom в VTo.
+        // Список пустой, если пути нету.
+        ArrayList<Vertex> list = new ArrayList<>();
+        Queue<Integer> queue = new Queue<>();
+        vertex[VFrom].Hit = true;
+        list.add(new Vertex(VFrom));
+        queue.enqueue(VFrom);
+        recursion(queue, queue.peek(), VTo, list);
+        turnToFalse();
+        for (int i = list.size()-1; i >= 1; i--){
+            if (list.get(i).parent != list.get(i-1).Value){
+                list.remove(i-1);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Vertex> recursion(Queue<Integer> queue, int vert, int VTo, ArrayList<Vertex> list) {
+        ArrayList<Integer> adjacent = adjacent(vert);
+        if (adjacent.size() > 0) {
+            for (int i = 0; i < adjacent.size(); i++) {
+                if (!vertex[adjacent.get(i)].Hit) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    if (adjacent.get(i) == VTo) {
+                        queue.enqueue(adjacent.get(i));
+                        list.add(new Vertex(adjacent.get(i)));
+                        list.get(list.size() - 1).parent = queue.peek();
+                        return list;
+                    }
+                    queue.enqueue(adjacent.get(i));
+                    list.add(new Vertex(adjacent.get(i)));
+                    list.get(list.size() - 1).parent = queue.peek();
+                }
+            }
+            queue.dequeue();
+            recursion(queue, queue.peek(), VTo, list);
+        } else {
+            queue.dequeue();
+            if (queue.size() == 0) {
+                return null;
+            } else {
+                recursion(queue, queue.peek(), VTo, list);
+            }
+        }
+        return list;
+    }
+
+
     public ArrayList<Vertex> recursion(Stack<Integer> stack, int vert, int VTO, ArrayList<Vertex> list) {
         ArrayList<Integer> adjacent = adjacent(vert); //This Arraylist gives a list of adjacent nodes
         if (adjacent.size() > 0) {
@@ -157,5 +209,5 @@ class SimpleGraph {
         }
         System.out.println();
     }
-    
+
 }
