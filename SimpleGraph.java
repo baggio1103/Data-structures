@@ -262,5 +262,56 @@ class SimpleGraph {
         }
         System.out.println();
     }
+    
+    public ArrayList<Vertex> WeakVertices() {
+        // возвращает список узлов вне треугольников
+        ArrayList<Vertex> list = new ArrayList<>();
+        Queue<Integer> queue = new Queue<>();
+        boolean fixed = false;
+        vertex[0].Hit = true;
+        list.add(new Vertex(0));
+        queue.enqueue(0);
+        breadth(queue, queue.peek(), list);
+        turnToFalse();
+        for (int i = 0; i < list.size(); i++) {
+            ArrayList<Integer> arr = adjacent(list.get(i).Value);
+            if (arr.size() >= 2) {
+                for (int j = 0; j < arr.size() - 1; j++) {
+                    if (IsEdge(arr.get(j), arr.get(j + 1))) {
+                        fixed = true;
+                    }
+                }
+                if (fixed) {
+                    list.remove(i);
+                    i--;
+                }
+            }
+            fixed = false;
+        }
+        return list;
+    }
 
+    public ArrayList<Vertex> breadth(Queue<Integer> queue, int vFrom, ArrayList<Vertex> list) {
+        ArrayList<Integer> adjacent = adjacent(vFrom);
+        if (adjacent.size() > 0) {
+            for (int i = 0; i < adjacent.size(); i++){
+                if (!vertex[adjacent.get(i)].Hit) {
+                    vertex[adjacent.get(i)].Hit = true;
+                    list.add(new Vertex(adjacent.get(i)));
+                    queue.enqueue(adjacent.get(i));
+                }
+            }
+            queue.dequeue();
+            breadth(queue, queue.peek(), list);
+        } else {
+            queue.dequeue();
+            if (queue.size() == 0) {
+                return list;
+            }else {
+                breadth(queue, queue.peek(), list);
+            }
+        }
+        return list;
+    }
+    
 }
