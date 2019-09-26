@@ -14,6 +14,14 @@ class Queue<T> {
         list.add(item);
     }
 
+    public T queueLast(){
+        if (list.size() > 0){
+            return (T) list.get(list.size()-1);
+        }else {
+            return null;
+        }
+    }
+
     public T dequeue() {
         // выдача из головы
         if (list.size() > 0) {
@@ -202,7 +210,6 @@ class SimpleGraph {
         return list;
     }
 
-
     public ArrayList<Vertex> recursion(Stack<Integer> stack, int vert, int VTO, ArrayList<Vertex> list) {
         ArrayList<Integer> adjacent = adjacent(vert); //This Arraylist gives a list of adjacent nodes
         if (adjacent.size() > 0) {
@@ -262,12 +269,11 @@ class SimpleGraph {
         }
         System.out.println();
     }
-    
+
     public ArrayList<Vertex> WeakVertices() {
         // возвращает список узлов вне треугольников
         ArrayList<Vertex> list = new ArrayList<>();
         Queue<Integer> queue = new Queue<>();
-        boolean fixed = false;
         vertex[0].Hit = true;
         list.add(new Vertex(0));
         queue.enqueue(0);
@@ -275,18 +281,17 @@ class SimpleGraph {
         turnToFalse();
         for (int i = 0; i < list.size(); i++) {
             ArrayList<Integer> arr = adjacent(list.get(i).Value);
-            if (arr.size() >= 2) {
-                for (int j = 0; j < arr.size() - 1; j++) {
-                    if (IsEdge(arr.get(j), arr.get(j + 1))) {
-                        fixed = true;
+            if (arr.size() > 1) {
+                for (int j = 0; j < arr.size(); j++) {
+                    for (int k = 0; k < arr.size(); k++){
+                        if (IsEdge(arr.get(j),arr.get(k)) && !arr.get(k).equals(arr.get(j))){
+                            list.remove(i);
+                            i--;
+                            k = arr.size(); j = arr.size();
+                        }
                     }
                 }
-                if (fixed) {
-                    list.remove(i);
-                    i--;
-                }
             }
-            fixed = false;
         }
         return list;
     }
@@ -313,5 +318,5 @@ class SimpleGraph {
         }
         return list;
     }
-    
+
 }
