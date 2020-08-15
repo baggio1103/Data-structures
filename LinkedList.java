@@ -43,9 +43,6 @@ public class LinkedList {
     public boolean remove(int _value) {
         Node node = head;
         Node newNode;
-           if(head == null){
-            return false;
-        }
          if (head.next == null && head.value == _value) {
             head = null;
             tail = null;
@@ -56,17 +53,14 @@ public class LinkedList {
                 return false;
             }
             if (head.value == _value) {
-                newNode = head;
-                head = null;
-                head = newNode.next;
+                head = head.next;
                 return true;
             }
             if ((node.next == tail) && (tail.value == _value)) {
                 node.next = null;
                 tail = node;
                 return true;
-            }
-            else if (node.next.value == _value) {
+            } else if (node.next.value == _value) {
                 newNode = node;
                 node = node.next;
                 newNode.next = node.next;
