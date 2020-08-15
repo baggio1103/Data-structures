@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Heap {
-    public int[] HeapArray; // хранит неотрицательные числа-ключи
+    public int[] HeapArray; // contains non-negative numbers - keys
 
     public Heap() {
         HeapArray = null;
@@ -9,8 +9,8 @@ class Heap {
 
 
     public void MakeHeap(int[] a, int depth) {
-        // создаём массив кучи HeapArray из заданного
-        // размер массива выбираем на основе глубины depth
+        // create a heap from a given array int[] a
+        // the size of an array is chosen basing on the depth "argument depth"
         HeapArray = new int[(int) Math.pow(2, depth + 1) - 1];
         for (int i = 0; i < HeapArray.length; i++) HeapArray[i] = -1;
 
@@ -20,7 +20,7 @@ class Heap {
     }
 
     public int GetMax() {
-        // вернуть значение корня и перестроить кучу
+        //return the maxElement and rearrange the heap
         int max;
         if (HeapArray[0] == -1) {
             return -1;
@@ -55,7 +55,7 @@ class Heap {
     }
 
     public boolean Add(int key) {
-        // добавляем новый элемент key в кучу и перестраиваем её
+        // add a new element to the heap and rearranges it
         if (HeapArray[0] == -1) {
             HeapArray[0] = key;
             return true;
@@ -77,7 +77,7 @@ class Heap {
                 }
             }
         }
-        return false; // если куча вся заполнена
+        return false; // if the heap is full
     }
 
     public void print(int[] array) {
