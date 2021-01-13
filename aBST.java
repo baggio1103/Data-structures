@@ -1,6 +1,6 @@
 import java.util.*;
 
-class aBST
+public class aBST
 {
     public Integer Tree []; // массив ключей
     public aBST(int depth)
