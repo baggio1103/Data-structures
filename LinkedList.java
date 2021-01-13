@@ -199,12 +199,10 @@ public class LinkedList {
         return list.tail;
     }
 }
-class Node
-{
+class Node{
     public int value;
     public Node next;
-    public Node(int _value)
-    {
+    public Node(int _value){
         value = _value;
         next = null;
     }
