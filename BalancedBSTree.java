@@ -6,7 +6,7 @@ class BSTNode
     public BSTNode Parent; // родитель или null для корня
     public BSTNode LeftChild; // левый потомок
     public BSTNode RightChild; // правый потомок
-    public int     Level; // глубина узла
+    public int Level; // глубина узла
 
     public BSTNode(int key, BSTNode parent)
     {
@@ -17,7 +17,7 @@ class BSTNode
     }
 }
 
-class BalancedBST
+public class BalancedBST
 {
     public BSTNode Root;
 
