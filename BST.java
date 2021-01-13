@@ -38,7 +38,7 @@ class BSTFind<T>
     }
 }
 
-class BST<T> {
+public class BST<T> {
     BSTNode<T> Root; // корень дерева, или null
     public int count;
 
