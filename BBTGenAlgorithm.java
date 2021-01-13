@@ -1,6 +1,6 @@
 import java.util.*;
 
-class AlgorithmsDataStructures2 {
+class BBTGenAlgorithm {
 
     public static int[] GenerateBBSTArray(int[] a) {
         int[] tree = new int[a.length];
