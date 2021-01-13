@@ -24,14 +24,14 @@ class AlgorithmsDataStructures2 {
         }
     }
     
-    public static void func(int[] array, int[] finArr, int start, int end, int index){
+    public static void func(int[] array, int[] finalArray, int start, int end, int index){
        if (start > end){
            return;
        }
        int mid = (start+end)/2;
-       finArr[index] = array[mid];
-       func(array, finArr, start, mid-1, 2*index+1);
-       func(array, finArr,mid+1, end, 2*index+2);
+       finalArray[index] = array[mid];
+       func(array, finalArray, start, mid-1, 2*index+1);
+       func(array, finalArray,mid+1, end, 2*index+2);
 
     }
 
