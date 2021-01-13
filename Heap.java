@@ -1,13 +1,13 @@
 import java.util.*;
 
 class Heap {
+    
     public int[] HeapArray; // contains non-negative numbers - keys
 
     public Heap() {
         HeapArray = null;
     }
-
-
+    
     public void MakeHeap(int[] a, int depth) {
         // create a heap from a given array int[] a
         // the size of an array is chosen basing on the depth "argument depth"
