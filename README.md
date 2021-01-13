@@ -32,13 +32,15 @@
                                                           
 [SimpleTree](https://github.com/baggio1103/Data-structures/blob/master/SimpleTree.java)
 
-[Binary Search Tree](https://github.com/baggio1103/Data-structures/blob/master/BinaryTree.java)
+[Binary Search Tree](https://github.com/baggio1103/Data-structures/blob/master/BinarySearchTree.java)
 
-[A method to create / organize an array for generating a balanced binary tree](https://github.com/baggio1103/Data-structures/blob/master/BalancedBinaryTree.java)
+[A method to create / organize an array for generating a balanced binary tree](https://github.com/baggio1103/Data-structures/blob/master/BBTGenAlgorithm.java)
 
-[Balanced Binary Search Tree generated from a random array](https://github.com/baggio1103/Data-structures/blob/master/BBTree.java)
+[Balanced Binary Search Tree generated from a random array](https://github.com/baggio1103/Data-structures/blob/master/BalancedBSTree.java)
 
-[Even Trees](https://github.com/baggio1103/Data-structures/blob/master/EvenTrees.java)
+[Implementation of Binary Search Tree basing on an array](https://github.com/baggio1103/Data-structures/blob/master/aBST.java)
+
+[Even Trees](https://github.com/baggio1103/Data-structures/blob/master/SimpleTree.java)
 
 [Heap](https://github.com/baggio1103/Data-structures/blob/master/Heap.java)
 
