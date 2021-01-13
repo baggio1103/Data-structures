@@ -1,6 +1,6 @@
 # Data-structures
     
-    Basic Data Structures
+        Basic Data Structures
 
 [LinkedList](https://github.com/baggio1103/Data-structures/blob/master/LinkedList.java)
 
