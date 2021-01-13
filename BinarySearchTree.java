@@ -38,11 +38,11 @@ class BSTFind<T>
     }
 }
 
-public class BST<T> {
+public class BinarySearchTree<T> {
     BSTNode<T> Root; // корень дерева, или null
     public int count;
 
-    public BST(BSTNode<T> node) {
+    public BinarySearchTree(BSTNode<T> node) {
         Root = node;
         count = 1;
     }
