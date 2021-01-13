@@ -115,4 +115,29 @@ public class SimpleTree<T> {
         return leafCount;
     }
     
+        public ArrayList<Integer> EvenTrees() {
+        // ...
+        ArrayList<Integer> list = new ArrayList<>();
+        for (SimpleTreeNode<T> nodes : GetAllNodes()) {
+            recCount(nodes);
+            if (((nums % 2) == 0) && (nums != 0) && (nodes != Root)) {
+                list.add((Integer) nodes.Parent.NodeValue);
+                list.add((Integer) nodes.NodeValue);
+            }
+            nums = 0;
+        }
+        return list;
+    }
+    
+    public void recCount(SimpleTreeNode<T> node) {
+        nums++;
+        for (SimpleTreeNode<T> node1 : node.Children) {
+            if (node1.haveChild) {
+                recCount(node1);
+            } else {
+                nums++;
+            }
+        }
+    }
+    
 }
