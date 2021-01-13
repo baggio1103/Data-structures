@@ -1,24 +1,7 @@
 import java.util.*;
 
-class BSTNode
-{
-    public int NodeKey; // ключ узла
-    public BSTNode Parent; // родитель или null для корня
-    public BSTNode LeftChild; // левый потомок
-    public BSTNode RightChild; // правый потомок
-    public int Level; // глубина узла
-
-    public BSTNode(int key, BSTNode parent)
-    {
-        NodeKey = key;
-        Parent = parent;
-        LeftChild = null;
-        RightChild = null;
-    }
-}
-
-public class BalancedBST
-{
+public class BalancedBST{
+    
     public BSTNode Root;
 
     public int [] BSTArray; // временный массив для ключей дерева
@@ -139,3 +122,22 @@ public class BalancedBST
     }
     
 }
+
+class BSTNode{
+    
+    public int NodeKey; // ключ узла
+    public BSTNode Parent; // родитель или null для корня
+    public BSTNode LeftChild; // левый потомок
+    public BSTNode RightChild; // правый потомок
+    public int Level; // глубина узла
+
+    public BSTNode(int key, BSTNode parent)
+    {
+        NodeKey = key;
+        Parent = parent;
+        LeftChild = null;
+        RightChild = null;
+    }
+    
+}
+
