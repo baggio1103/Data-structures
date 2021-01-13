@@ -18,7 +18,7 @@
 
 [Hash Table](https://github.com/baggio1103/Data-structures/blob/master/HashTable.java)
 
-[Map, or NativeDictinoary](https://github.com/baggio1103/Data-structures/blob/master/NativeDictionary.java)
+[Map, or NativeDictionary](https://github.com/baggio1103/Data-structures/blob/master/NativeDictionary.java)
 
 [PowerSet](https://github.com/baggio1103/Data-structures/blob/master/PowerSet.java)
 
