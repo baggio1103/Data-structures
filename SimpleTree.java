@@ -1,6 +1,5 @@
 import java.util.*;
-public class SimpleTreeNode<T>
-{
+class SimpleTreeNode<T>{
     public T NodeValue; // значение в узле
     public SimpleTreeNode<T> Parent; // родитель или null для корня
     public List<SimpleTreeNode<T>> Children; // список дочерних узлов или null
@@ -15,7 +14,7 @@ public class SimpleTreeNode<T>
     }
 }
 
-class SimpleTree<T> {
+public class SimpleTree<T> {
     public SimpleTreeNode<T> Root; // корень, может быть null
     public int count;
     public List<SimpleTreeNode<T>> values = new ArrayList<>();
