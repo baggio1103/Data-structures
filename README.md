@@ -1,6 +1,6 @@
 # Data-structures
 
-                                                        #Basic Data Structures
+                                                 # Basic Data Structures
 
 [LinkedList](https://github.com/baggio1103/Data-structures/blob/master/LinkedList.java)
 
@@ -27,7 +27,7 @@
 [NativeCache](https://github.com/baggio1103/Data-structures/blob/master/NativeCache.java)
 
                                                           
-                                                     #Tree-Graph Related Data Structures  
+                                               #Tree-Graph Related Data Structures  
                                                         
                                                           
 [SimpleTree](https://github.com/baggio1103/Data-structures/blob/master/SimpleTree.java)
